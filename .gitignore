@@ -1,0 +1,16 @@
+MANIFEST
+build
+dist
+doc/build
+doc/tutorial
+env
+*.pyc
+*.egg
+*.egg-info
+.coverage
+.vscode
+.venv
+.db
+*-oauth2.json
+__pycache__
+secret/
