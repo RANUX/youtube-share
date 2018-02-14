@@ -30,7 +30,6 @@ def print_response(response):
     print(json.dumps(response, sort_keys=True, indent=2))
 
 def get_youtube_client():
-    global youtube
     flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
     message=MISSING_CLIENT_SECRETS_MESSAGE,
     scope=YOUTUBE_READONLY_SCOPE)
@@ -120,7 +119,7 @@ def list_videos_in_all_playlists_by_channel_id(client, **kwargs):
                 video_id = playlist_item["snippet"]["resourceId"]["videoId"]
                 print("%s (%s)" % (title, video_id))
 
-                playlistitems_list_request = youtube.playlistItems().list_next(
+                playlistitems_list_request = client.playlistItems().list_next(
                 playlistitems_list_request, playlistitems_list_response)
 
 def main():

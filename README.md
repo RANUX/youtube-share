@@ -1,7 +1,8 @@
 
 ## About
 Get latest published videos from YouTube channel and publish to:
-    * Telegram
+
+* Telegram
 
 ## Install
 Create `secret.py` and add TOKEN variable:
@@ -9,6 +10,14 @@ Create `secret.py` and add TOKEN variable:
 TOKEN = ''
 ```
 Change `config.py` to your settings.
+Run `make` in project folder, this will create virtualenv.
+
+## Run
+In project solder
+```
+source .venv/bin/activate
+python bot.py
+```
 
 ## YouTube
 YouTube API quickstart:
@@ -22,4 +31,5 @@ https://developers.google.com/youtube/v3/code_samples/python
 
 ## TODO:
 Publish to:
-    * vk group
+
+* VK group
