@@ -41,6 +41,7 @@ def check_new_youtube_videos():
 if __name__ == '__main__':
     # Избавляемся от спама в логах от библиотеки
     logging.getLogger('urllib3').setLevel(logging.CRITICAL)
+    logging.getLogger('peewee').setLevel(logging.CRITICAL)
 
     # Настраиваем наш логгер
     logging.basicConfig(format='[%(asctime)s] %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.INFO,

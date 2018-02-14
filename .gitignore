@@ -10,7 +10,7 @@ env
 .coverage
 .vscode
 .venv
-.db
+*.db
 *-oauth2.json
 __pycache__
 secret/
