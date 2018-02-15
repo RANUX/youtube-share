@@ -4,6 +4,7 @@ import os
 DB_NAME = 'bot.db'
 CHANNEL_NAME = '@docodetest'
 YOUTUBE_POST_URL = 'https://youtube.com/watch?v='
+SLEEP_TIME = 60*60*3
 
 ############################################################################
 # YouTube Settings

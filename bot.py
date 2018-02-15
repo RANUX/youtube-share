@@ -4,7 +4,8 @@ from time import sleep
 import time
 from config import YOUTUBE_CHANNEL_ID, \
                     YOUTUBE_POST_URL, \
-                    CHANNEL_NAME
+                    CHANNEL_NAME, \
+                    SLEEP_TIME
 from secret import TOKEN
 import telebot
 import sys
@@ -55,7 +56,7 @@ if __name__ == '__main__':
             check_new_youtube_videos()
             # Пауза в 4 минуты перед повторной проверкой
             logging.info('[App] Script went to sleep.')
-            time.sleep(60 * 4)
+            time.sleep(SLEEP_TIME)
     else:
         check_new_youtube_videos()
     
