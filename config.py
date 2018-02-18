@@ -1,5 +1,7 @@
 # -*- coding=utf-8 -*-
+import logging
 import os
+import sys
 
 DB_NAME = 'bot.db'
 CHANNEL_NAME = '@docodetest'
@@ -47,3 +49,24 @@ https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
                                    CLIENT_SECRETS_FILE))
 
 YOUTUBE_CHANNEL_ID = 'UCZCeENC0VU4nX8wCj--kikA'
+
+
+############################################################################
+# VK Settings
+############################################################################
+VK_GROUP_ID = '21835090'
+VK_GROUP_ID_NEG = '-'+VK_GROUP_ID
+
+
+############################################################################
+# Logging Settings
+############################################################################
+logging.basicConfig(format='[%(asctime)s] %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.DEBUG,
+                    stream=sys.stdout, datefmt='%d.%m.%Y %H:%M:%S')
+
+# logging.basicConfig(format='[%(asctime)s] %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.INFO,
+#                     filename='bot_log.log', datefmt='%d.%m.%Y %H:%M:%S')
+
+# Get rid of spam in the logs from the library
+logging.getLogger('urllib3').setLevel(logging.CRITICAL)
+logging.getLogger('peewee').setLevel(logging.CRITICAL)

@@ -12,11 +12,10 @@ import sys
 from youtube import get_youtube_client, get_recent_video_ids
 import db
 
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 youtube_clinet = get_youtube_client()
 
-# Если True, предполагается использование cron для запуска скрипта
-# Если False, процесс запускается и постоянно висит запущенный
+# If True, use cron to run the script
+# If False, the process starts and constantly running
 SINGLE_RUN = False
 
 bot = telebot.TeleBot(TOKEN)
@@ -36,25 +35,17 @@ def check_new_youtube_videos():
         link = '{!s}{!s}'.format(YOUTUBE_POST_URL, vid)
         bot.send_message(CHANNEL_NAME, link)
         db.save_published_video(vid)
-        # Спим секунду, чтобы избежать разного рода ошибок и ограничений (на всякий случай!)
+        # We sleep a second to avoid all sorts of mistakes and limitations (just in case!)
         time.sleep(1)
 
 if __name__ == '__main__':
-    # Избавляемся от спама в логах от библиотеки
-    logging.getLogger('urllib3').setLevel(logging.CRITICAL)
-    logging.getLogger('peewee').setLevel(logging.CRITICAL)
-
-    # Настраиваем наш логгер
-    logging.basicConfig(format='[%(asctime)s] %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.INFO,
-                        filename='bot_log.log', datefmt='%d.%m.%Y %H:%M:%S')
-
     logging.info('[App] Run.\n')
     db.init_db()
 
     if not SINGLE_RUN:
         while True:
             check_new_youtube_videos()
-            # Пауза в 4 минуты перед повторной проверкой
+            # Pause 4 minutes before re-checking
             logging.info('[App] Script went to sleep.')
             time.sleep(SLEEP_TIME)
     else:
