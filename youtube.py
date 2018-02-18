@@ -72,7 +72,8 @@ def videos_list_by_id(client, **kwargs):
     **kwargs
     ).execute()
 
-    return print_response(response)
+    if response['items']:
+        return response['items'][0]
 
 
 def get_recent_video_ids(client, **kwargs):
@@ -87,9 +88,9 @@ def get_recent_video_ids(client, **kwargs):
     return ids
 
 
-def list_videos_in_all_playlists_by_channel_id(client, **kwargs):
+def get_playlist(client, video_id, **kwargs):
     '''
-    list_videos_in_all_playlists_by_channel_id(youtube,
+    get_playlist(youtube,
         part='snippet',
         channelId=YOUTUBE_CHANNEL_ID,
         maxResults=25
@@ -100,7 +101,7 @@ def list_videos_in_all_playlists_by_channel_id(client, **kwargs):
     ).execute()
     
     for k in response['items']:
-        print("Videos in list %s" % k['snippet']['localized']['title'])
+        #print("Videos in list %s" % k['snippet']['localized']['title'])
 
         # Retrieve the list of videos uploaded to the authenticated user's channel.
         playlistitems_list_request = client.playlistItems().list(
@@ -114,13 +115,13 @@ def list_videos_in_all_playlists_by_channel_id(client, **kwargs):
 
             # Print information about each video.
             for playlist_item in playlistitems_list_response["items"]:
-                print(playlist_item)
-                title = playlist_item["snippet"]["title"]
-                video_id = playlist_item["snippet"]["resourceId"]["videoId"]
-                print("%s (%s)" % (title, video_id))
+                if video_id == playlist_item["snippet"]["resourceId"]["videoId"]:
+                    return k
 
                 playlistitems_list_request = client.playlistItems().list_next(
-                playlistitems_list_request, playlistitems_list_response)
+                    playlistitems_list_request,
+                    playlistitems_list_response
+                )
 
 def main():
     youtube_clinet = get_youtube_client()
@@ -131,7 +132,18 @@ def main():
         maxResults=10
     )
 
-    [print('https://youtube.com/watch?v={}'.format(id)) for id in video_ids]
+    #[print('https://youtube.com/watch?v={}'.format(id)) for id in video_ids]
+    # info = videos_list_by_id(youtube_clinet,
+    # part='snippet',
+    # id=video_ids[0]
+    # )
+    #print_response(info)
+    playlist_info = get_playlist(youtube_clinet, 
+        video_id=video_ids[0],
+        part='snippet',
+        channelId=YOUTUBE_CHANNEL_ID,
+        maxResults=25)
+    print_response(playlist_info)
 
 
 if __name__ == '__main__':
