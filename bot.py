@@ -8,7 +8,7 @@ import sys
 import db
 import youtube as y2be
 import vk
-import telegram as tg
+#import telegram as tg
 
 y2be_clinet = y2be.get_youtube_client()
 
@@ -18,7 +18,7 @@ SINGLE_RUN = False
 
 # init bots
 vkbot = vk.connect()
-tbot = tg.connect()
+#tbot = tg.connect()
 
 def check_new_youtube_videos():
     video_ids = y2be.get_recent_video_ids(
@@ -32,7 +32,7 @@ def check_new_youtube_videos():
         if db.get_publihed_video(vid):
             continue
         
-        tg.postYoutubeVideo(tbot, vid)
+        #tg.postYoutubeVideo(tbot, vid)
 
         video_info = y2be.videos_list_by_id(y2be_clinet,
             part='snippet',

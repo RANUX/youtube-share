@@ -4,7 +4,7 @@ import os
 import sys
 
 DB_NAME = 'bot.db'
-CHANNEL_NAME = '@docodetest'
+CHANNEL_NAME = '@docode'
 YOUTUBE_POST_URL = 'https://youtube.com/watch?v='
 SLEEP_TIME = 60*60*3
 
@@ -54,7 +54,8 @@ YOUTUBE_CHANNEL_ID = 'UCZCeENC0VU4nX8wCj--kikA'
 ############################################################################
 # VK Settings
 ############################################################################
-VK_GROUP_ID = '21835090'
+#VK_GROUP_ID = '21835090'
+VK_GROUP_ID = '83675618'
 VK_GROUP_ID_NEG = '-'+VK_GROUP_ID
 
 

@@ -19,6 +19,12 @@ source .venv/bin/activate
 python bot.py
 ```
 
+## Fixing errors
+> ImportError: No module named 'oauth2client':
+```
+pip3 install --upgrade oauth2client
+```
+
 ## YouTube
 YouTube API quickstart:
 
